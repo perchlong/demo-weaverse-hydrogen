@@ -22,6 +22,10 @@ export default defineConfig({
     // Allow a strict Content-Security-Policy
     // without inlining assets as base64:
     assetsInlineLimit: 0,
+    sourcemap: true,
+    rollupOptions: {
+      external: ['@headlessui/react'],
+    },
   },
   ssr: {
     optimizeDeps: {
