@@ -392,7 +392,7 @@ export let themeSchema: HydrogenThemeSchema = {
           type: "color",
           label: "Compare price text",
           name: "comparePriceTextColor",
-          defaultValue: "#737373",
+          defaultValue: "#ef4444",
         },
         {
           type: "color",

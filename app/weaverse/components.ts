@@ -19,6 +19,7 @@ import * as CountDownTimer from "~/sections/countdown/timer";
 import * as FeaturedCollections from "~/sections/featured-collections";
 import * as FeaturedCollectionItems from "~/sections/featured-collections/collection-items";
 import * as FeaturedProducts from "~/sections/featured-products";
+import * as FeaturedProductItems from "~/sections/featured-products/product-items";
 import * as HeroImage from "~/sections/hero-image";
 import * as HeroVideo from "~/sections/hero-video";
 import * as Hotspots from "~/sections/hotspots";
@@ -52,6 +53,9 @@ import * as TestimonialItems from "~/sections/testimonials/items";
 import * as VideoEmbed from "~/sections/video-embed";
 import * as VideoEmbedItem from "~/sections/video-embed/video";
 import * as UserProfiles from "~/sections/user-profiles"
+import * as Quote from "~/sections/quote";
+import * as NewProducts from "~/sections/new-product"
+import * as NewProductItems  from "~/sections/new-product/product-items"
 export let components: HydrogenComponent[] = [
   SubHeading,
   Heading,
@@ -89,6 +93,7 @@ export let components: HydrogenComponent[] = [
   BlogPost,
   AllProducts,
   FeaturedProducts,
+  FeaturedProductItems,
   Testimonial,
   TestimonialItems,
   TestimonialItem,
@@ -109,4 +114,7 @@ export let components: HydrogenComponent[] = [
   ProductList,
   Spacer,
   UserProfiles,
+  Quote,
+  NewProducts,
+  NewProductItems
 ];

@@ -52,7 +52,7 @@ export function AddToCartButton({
               type="submit"
               variant={variant}
               className={className}
-              disabled={disabled ?? fetcher.state !== "idle"}
+              // disabled={disabled ?? fetcher.state !== "idle"}
               {...props}
             >
               {children}
@@ -83,7 +83,7 @@ function AddToCartAnalytics({
       try {
         if (cartInputs.inputs.analytics) {
           const dataInForm: unknown = JSON.parse(
-            String(cartInputs.inputs.analytics),
+            String(cartInputs.inputs.analytics)
           );
           Object.assign(cartData, dataInForm);
         }

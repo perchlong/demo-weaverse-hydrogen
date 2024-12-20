@@ -1,6 +1,10 @@
 import type { ShopifyAnalyticsProduct } from "@shopify/hydrogen";
 import { Image, Money, flattenConnection } from "@shopify/hydrogen";
-import type { MoneyV2, Product } from "@shopify/hydrogen/storefront-api-types";
+import type {
+  Media,
+  MoneyV2,
+  Product,
+} from "@shopify/hydrogen/storefront-api-types";
 import clsx from "clsx";
 import type { ProductCardFragment } from "storefrontapi.generated";
 import { getProductPlaceholder } from "~/lib/placeholders";
@@ -31,6 +35,10 @@ export function ProductCard({
   let cardProduct: Product = product?.variants
     ? (product as Product)
     : getProductPlaceholder();
+  let medias = product.media?.nodes;
+
+  let firstMedia = medias?.[0] as Media;
+  let secondMedia = medias?.[1] as Media;
   if (!cardProduct?.variants?.nodes?.length) return null;
 
   let variants = flattenConnection(cardProduct.variants);
@@ -67,20 +75,32 @@ export function ProductCard({
               to={`/products/${product.handle}`}
               prefetch="intent"
             >
-              <Image
-                className="object-cover w-full opacity-0 animate-fade-in"
-                sizes="(min-width: 64em) 25vw, (min-width: 48em) 30vw, 45vw"
-                aspectRatio="4/5"
-                data={image}
-                alt={image.altText || `Picture of ${product.title}`}
-                loading={loading}
-              />
+              {firstMedia?.previewImage && (
+                <Image
+                  className="w-full h-full object-cover rounded-lg transition-opacity duration-300 ease-in-out group-hover:opacity-0"
+                  sizes="(min-width: 64em) 25vw, (min-width: 48em) 30vw, 45vw"
+                  aspectRatio="4/5"
+                  data={firstMedia?.previewImage}
+                  // alt={image.altText || `Picture of ${product.title}`}
+                  loading={loading}
+                />
+              )}
+              {secondMedia?.previewImage != null && (
+                <Image
+                  className=" w-full h-full object-cover rounded-lg absolute top-0 left-0 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+                  sizes="(min-width: 64em) 25vw, (min-width: 48em) 30vw, 45vw"
+                  aspectRatio="4/5"
+                  data={secondMedia?.previewImage}
+                  // alt={image.altText || `Picture of ${product.title}`}
+                  loading={loading}
+                />
+              )}
             </Link>
           )}
           <Text
             as="label"
-            size="fine"
-            className="absolute top-0 right-0 m-4 text-right text-notice"
+            size="lead"
+            className="absolute top-0 right-0 m-4 text-right text-notice text-yellow-700 uppercase"
           >
             {cardLabel}
           </Text>
@@ -90,7 +110,7 @@ export function ProductCard({
           {quickAdd &&
             variants.length === 1 &&
             firstVariant.availableForSale && (
-              <div className="absolute bottom-0 hidden w-full bg-[rgba(238,239,234,0.10)] px-3 py-5 opacity-100 backdrop-blur-2xl lg:group-hover:block">
+              <div className="absolute bottom-0  w-full   opacity-100  ">
                 <AddToCartButton
                   lines={[
                     {
@@ -99,8 +119,7 @@ export function ProductCard({
                       selectedVariant: firstVariant,
                     },
                   ]}
-                  variant="secondary"
-                  className="mt-2"
+                  className="mt-2 uppercase w-full"
                   analytics={{
                     products: [productAnalytics],
                     totalValue: Number.parseFloat(productAnalytics.price),
@@ -132,7 +151,10 @@ export function ProductCard({
             <Text className="flex gap-2">
               <Money withoutTrailingZeros data={price} />
               {isDiscounted(price as MoneyV2, compareAtPrice as MoneyV2) && (
-                <CompareAtPrice data={compareAtPrice as MoneyV2} />
+                <CompareAtPrice
+                  data={compareAtPrice as MoneyV2}
+                  className="opacity-50"
+                />
               )}
             </Text>
           </div>

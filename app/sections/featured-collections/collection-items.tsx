@@ -108,7 +108,7 @@ let CollectionItems = forwardRef<HTMLDivElement, CollectionItemsProps>(
             "overflow-x-scroll md:overflow-x-hidden hidden-scroll scroll-px-6",
             "grid w-full grid-flow-col md:grid-flow-row justify-start gap-2",
           ],
-          variants({ gridSize, gap }),
+          variants({ gridSize, gap })
         )}
       >
         {collections.map((collection, ind) => (
@@ -123,7 +123,7 @@ let CollectionItems = forwardRef<HTMLDivElement, CollectionItemsProps>(
                 style={{
                   aspectRatio: getImageAspectRatio(
                     collection?.image || {},
-                    aspectRatio,
+                    aspectRatio
                   ),
                 }}
               >
@@ -159,7 +159,7 @@ let CollectionItems = forwardRef<HTMLDivElement, CollectionItemsProps>(
                 className={clsx(
                   contentPosition === "over"
                     ? "text-center space-y-4 xl:space-y-7 px-4 py-16 text-[var(--col-name-color)]"
-                    : "py-4",
+                    : "py-4"
                 )}
               >
                 {contentPosition === "over" ? (
@@ -186,7 +186,7 @@ let CollectionItems = forwardRef<HTMLDivElement, CollectionItemsProps>(
         ))}
       </div>
     );
-  },
+  }
 );
 
 let COLLECTION_PLACEHOLDER: FeaturedCollectionsLoaderData[0] = {

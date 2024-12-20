@@ -24,7 +24,7 @@ let FeaturedCollections = forwardRef<HTMLElement, FeaturedCollectionsProps>(
         {children}
       </Section>
     );
-  },
+  }
 );
 
 export default FeaturedCollections;
@@ -59,7 +59,7 @@ export let loader = async ({
 }: ComponentLoaderArgs<FeaturedCollectionsData>) => {
   let { language, country } = weaverse.storefront.i18n;
   let ids = data.collections?.map(
-    (collection) => `gid://shopify/Collection/${collection.id}`,
+    (collection) => `gid://shopify/Collection/${collection.id}`
   );
   if (ids?.length) {
     let { nodes } = await weaverse.storefront.query<CollectionsByIdsQuery>(
@@ -70,7 +70,7 @@ export let loader = async ({
           language,
           ids,
         },
-      },
+      }
     );
     return nodes.filter(Boolean);
   }

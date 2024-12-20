@@ -34,7 +34,7 @@ export function AnnouncementBar() {
   return (
     <div
       id="announcement-bar"
-      className="text-center z-50 flex items-center relative overflow-x-hidden"
+      className="text-center z-50 flex items-center justify-center  w-full h-full"
       style={{
         height: `${topbarHeight}px`,
         backgroundColor: topbarBgColor,

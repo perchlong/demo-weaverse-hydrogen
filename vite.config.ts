@@ -21,7 +21,6 @@ export default defineConfig({
   build: {
     // Allow a strict Content-Security-Policy
     // without inlining assets as base64:
-    outDir:"build",
     assetsInlineLimit: 0,
     sourcemap: true,
     rollupOptions: {

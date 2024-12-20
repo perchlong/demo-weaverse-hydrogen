@@ -42,8 +42,23 @@ export const PRODUCT_CARD_FRAGMENT = `#graphql
     id
     title
     publishedAt
+   featuredImage{
+          url
+          height
+          width
+        }
+    media(first:2){
+        nodes{
+          previewImage{
+            url
+            height
+            width 
+          }
+        }
+      }
     handle
     vendor
+    tags
     variants(first: 10) {
       nodes {
         id

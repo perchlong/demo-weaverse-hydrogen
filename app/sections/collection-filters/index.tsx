@@ -10,9 +10,10 @@ import { useInView } from "react-intersection-observer";
 import type { CollectionDetailsQuery } from "storefrontapi.generated";
 import { PageHeader, Section, Text } from "~/modules/text";
 import { Button } from "~/modules/button";
-import { DrawerFilter } from "~/modules/drawer-filter";
+import { DrawerHeader } from "~/modules/drawer-header";
 import type { AppliedFilter } from "~/modules/sort-filter";
 import { ProductsLoadedOnScroll } from "./products-loaded-on-scroll";
+import { FilterDrawer } from "~/modules/filter-draw";
 
 interface CollectionFiltersProps extends HydrogenComponentProps {
   showCollectionDescription: boolean;
@@ -36,6 +37,7 @@ let CollectionFilters = forwardRef<HTMLElement, CollectionFiltersProps>(
         appliedFilters: AppliedFilter[];
       }
     >();
+
     let productNumber = collection?.products.nodes.length;
 
     if (collection?.products && collections) {
@@ -52,58 +54,70 @@ let CollectionFilters = forwardRef<HTMLElement, CollectionFiltersProps>(
               </div>
             )}
           </PageHeader>
-          <DrawerFilter
+          <DrawerHeader
             numberInRow={numberInRow}
             onLayoutChange={onLayoutChange}
             productNumber={productNumber}
-            filters={collection.products.filters as Filter[]}
-            appliedFilters={appliedFilters}
             collections={collections}
           />
           <Section as="div">
-            <Pagination connection={collection.products}>
-              {({
-                nodes,
-                isLoading,
-                PreviousLink,
-                NextLink,
-                nextPageUrl,
-                hasNextPage,
-                state,
-              }) => (
-                <>
-                  <div className="flex items-center justify-center mb-6 empty:hidden">
-                    <Button as={PreviousLink} variant="secondary" width="full">
-                      {isLoading ? "Loading..." : loadPrevText}
-                    </Button>
-                  </div>
-                  <ProductsLoadedOnScroll
-                    numberInRow={numberInRow}
-                    nodes={nodes}
-                    inView={inView}
-                    nextPageUrl={nextPageUrl}
-                    hasNextPage={hasNextPage}
-                    state={state}
-                  />
-                  <div className="flex items-center justify-center mt-6">
-                    <Button
-                      ref={ref}
-                      as={NextLink}
-                      variant="secondary"
-                      width="full"
-                    >
-                      {isLoading ? "Loading..." : loadMoreText}
-                    </Button>
-                  </div>
-                </>
-              )}
-            </Pagination>
+            <div className=" grid  grid-cols-8 gap-4">
+              <div>
+                <FilterDrawer
+                  filters={collection.products.filters as Filter[]}
+                  appliedFilters={appliedFilters}
+                />
+              </div>
+              <div className="col-span-7">
+                <Pagination connection={collection.products}>
+                  {({
+                    nodes,
+                    isLoading,
+                    PreviousLink,
+                    NextLink,
+                    nextPageUrl,
+                    hasNextPage,
+                    state,
+                  }) => (
+                    <>
+                      <div className="flex items-center justify-center mb-6 empty:hidden">
+                        <Button
+                          as={PreviousLink}
+                          variant="secondary"
+                          width="full"
+                        >
+                          {isLoading ? "Loading..." : loadPrevText}
+                        </Button>
+                      </div>
+                      <ProductsLoadedOnScroll
+                        numberInRow={numberInRow}
+                        nodes={nodes}
+                        inView={inView}
+                        nextPageUrl={nextPageUrl}
+                        hasNextPage={hasNextPage}
+                        state={state}
+                      />
+                      <div className="flex items-center justify-center mt-6">
+                        <Button
+                          ref={ref}
+                          as={NextLink}
+                          variant="secondary"
+                          width="full"
+                        >
+                          {isLoading ? "Loading..." : loadMoreText}
+                        </Button>
+                      </div>
+                    </>
+                  )}
+                </Pagination>
+              </div>
+            </div>
           </Section>
         </section>
       );
     }
     return <section ref={sectionRef} {...rest} />;
-  },
+  }
 );
 
 export default CollectionFilters;

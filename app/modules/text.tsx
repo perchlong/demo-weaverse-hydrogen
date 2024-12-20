@@ -45,7 +45,7 @@ export function Text({
     missingClass(className, "whitespace-") && "whitespace-pre-wrap",
     missingClass(className, "text-") && colors[color],
     sizes[size],
-    className,
+    className
   );
 
   return (
@@ -87,7 +87,7 @@ export function Heading({
     missingClass(className, "whitespace-") && "whitespace-pre-wrap",
     missingClass(className, "max-w-") && widths[width],
     missingClass(className, "font-") && sizes[size],
-    className,
+    className
   );
 
   return (
@@ -140,7 +140,7 @@ export function Section({
     displays[display],
     missingClass(className, "\\mp[xy]?-") && paddings[padding],
     dividers[divider],
-    className,
+    className
   );
 
   return (
@@ -182,7 +182,12 @@ export function PageHeader({
   return (
     <Component {...props} className={styles}>
       {heading && (
-        <Heading as="h6" width="narrow" size="heading" className="inline-block">
+        <Heading
+          as="h3"
+          width="narrow"
+          size="heading"
+          className="inline-block uppercase"
+        >
           {heading}
         </Heading>
       )}

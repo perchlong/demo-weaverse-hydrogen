@@ -23,7 +23,7 @@ let variants = cva(
         mix: "2xl:grid-cols-2",
       },
     },
-  },
+  }
 );
 
 export interface ProductMediaProps extends VariantProps<typeof variants> {
@@ -61,7 +61,7 @@ export function ProductMedia(props: ProductMediaProps) {
               aspectRatio={getImageAspectRatio(image, imageAspectRatio)}
               className={clsx(
                 "object-cover opacity-0 animate-fade-in w-[80vw] max-w-none lg:w-full lg:h-full",
-                gridSize === "mix" && idx % 3 === 0 && "lg:col-span-2",
+                gridSize === "mix" && idx % 3 === 0 && "lg:col-span-2"
               )}
               sizes="auto"
             />
@@ -72,7 +72,7 @@ export function ProductMedia(props: ProductMediaProps) {
   }
 
   return (
-    <div className="flex flex-col-reverse md:flex-row gap-4 overflow-hidden">
+    <div className="flex flex-col-reverse  justify-center md:flex-row gap-4 overflow-hidden">
       <Swiper
         onSwiper={setThumbsSwiper}
         direction="vertical"
@@ -90,7 +90,7 @@ export function ProductMedia(props: ProductMediaProps) {
               key={med.id}
               className={clsx(
                 "!h-[100px] p-1 border transition-colors aspect-[3/4] cursor-pointer",
-                activeIndex === i ? "border-black" : "border-transparent",
+                activeIndex === i ? "border-black" : "border-transparent"
               )}
             >
               <Image
@@ -136,7 +136,7 @@ export function ProductMedia(props: ProductMediaProps) {
                 data={image}
                 loading={i === 0 ? "eager" : "lazy"}
                 aspectRatio={"3/4"}
-                className="object-cover w-full h-auto opacity-0 animate-fade-in"
+                className="object-contain w-full h-1/2 opacity-0 animate-fade-in"
                 sizes="auto"
               />
             </SwiperSlide>

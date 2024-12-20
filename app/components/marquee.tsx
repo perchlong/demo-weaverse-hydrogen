@@ -49,7 +49,7 @@ export function Marquee({
     minAnimationTime;
   return (
     <div
-      className="flex items-center justify-center w-full "
+      className="flex items-center justify-center w-full h-full"
       style={
         {
           "--animation-speed": `${animationTime}ms`,
@@ -113,19 +113,17 @@ function OneView({
       window.removeEventListener("resize", calculateRepeat);
     };
   }, []);
-  let oneView = (
-    <div className="flex" style={{ paddingRight: gap, gap }}>
-      {Array.from({ length: contentRepeat || 1 }).map((_, index) => (
-        <div key={index} className="shrink-0">
-          {/* {topbarText} */}
-        </div>
-      ))}
-    </div>
-  );
+
   return (
-    <div className="flex items-center  ">
-      <div className="shrink-0 animate-marquee ">{oneView}</div>
-      {/* <div className="shrink-0 animate-marquee">{oneView}</div> */}
+    <div className="flex flex-nowrap justify-center items-center w-1/2 h-full relative  ">
+      <div
+        className=" animate-front  whitespace-nowrap absolute left-[100%] top-1/2  "
+        dangerouslySetInnerHTML={{ __html: topbarText }}
+      />
+      <div
+        className="animate-back whitespace-nowrap  absolute left-[100%] top-1/2    "
+        dangerouslySetInnerHTML={{ __html: topbarText1 }}
+      />
     </div>
   );
 }

@@ -70,7 +70,7 @@ export function Drawer({
               className={clsx(
                 "fixed inset-y-0 flex",
                 openFrom === "right" && "right-0 max-w-full",
-                openFrom === "top" && "overflow-hidden w-screen",
+                openFrom === "top" && "overflow-hidden w-screen"
               )}
             >
               <TransitionChild
@@ -87,7 +87,7 @@ export function Drawer({
                     "text-left align-middle transition-transform transform shadow-xl bg-background",
                     openFrom === "top"
                       ? "h-fit w-screen"
-                      : "max-w-lg h-screen-dynamic",
+                      : "max-w-lg h-screen-dynamic"
                   )}
                 >
                   {openFrom !== "top" && (
@@ -98,9 +98,9 @@ export function Drawer({
                         isBackMenu
                           ? "justify-start gap-4"
                           : heading
-                            ? "justify-between"
-                            : "justify-end",
-                        bordered && "border-b",
+                          ? "justify-between"
+                          : "justify-end",
+                        bordered && "border-b"
                       )}
                     >
                       {isBackMenu && (
@@ -117,7 +117,9 @@ export function Drawer({
                         </button>
                       )}
                       {heading !== null && (
-                        <DialogTitle as="h5">{heading}</DialogTitle>
+                        <DialogTitle as="h5" className="uppercase">
+                          {heading}
+                        </DialogTitle>
                       )}
                       {!isBackMenu && (
                         <button

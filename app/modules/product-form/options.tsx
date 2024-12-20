@@ -84,7 +84,7 @@ export function VariantOption(props: VariantOptionProps) {
                   selected: selectedOptionValue === value,
                   disabled: !isAvailable,
                 }),
-                !isAvailable && "bg-neutral-100",
+                !isAvailable && "bg-neutral-100"
               )}
               onClick={() => onSelectOptionValue(value)}
             >
@@ -97,7 +97,7 @@ export function VariantOption(props: VariantOptionProps) {
         <div className="flex gap-3">
           {values.map(({ value, isAvailable }) => {
             let swatchColor = swatches.colors.find(
-              ({ name }) => name === value,
+              ({ name }) => name === value
             );
             return (
               <Tooltip key={value}>
@@ -111,14 +111,14 @@ export function VariantOption(props: VariantOptionProps) {
                         shape,
                         selected: selectedOptionValue === value,
                         disabled: !isAvailable,
-                      }),
+                      })
                     )}
                     onClick={() => onSelectOptionValue(value)}
                   >
                     <span
                       className={cn(
                         "w-full h-full inline-block border-none hover:border-none",
-                        variants({ shape }),
+                        variants({ shape })
                       )}
                       style={{ backgroundColor: swatchColor?.value || value }}
                     />
@@ -134,7 +134,7 @@ export function VariantOption(props: VariantOptionProps) {
         <div className="flex gap-3">
           {values.map(({ value, image, isAvailable }) => {
             let swatchImage = swatches.images.find(
-              (i) => i.name.toLowerCase() === value.toLowerCase(),
+              (i) => i.name.toLowerCase() === value.toLowerCase()
             );
             let imageToRender = swatchImage?.value || image;
             let aspectRatio = "1/1";
@@ -150,7 +150,7 @@ export function VariantOption(props: VariantOptionProps) {
                     shape,
                     selected: selectedOptionValue === value,
                     disabled: !isAvailable,
-                  }),
+                  })
                 )}
                 onClick={() => onSelectOptionValue(value)}
                 style={{ aspectRatio }}
@@ -167,7 +167,7 @@ export function VariantOption(props: VariantOptionProps) {
                     }
                     className={cn(
                       "w-full h-full object-cover object-center border-none hover:border-none",
-                      variants({ shape }),
+                      variants({ shape })
                     )}
                     sizes="auto"
                   />
@@ -175,7 +175,7 @@ export function VariantOption(props: VariantOptionProps) {
                   <span
                     className={cn(
                       "w-full h-full inline-block",
-                      variants({ shape }),
+                      variants({ shape })
                     )}
                     style={{ backgroundColor: value }}
                   />
@@ -203,7 +203,7 @@ export function VariantOption(props: VariantOptionProps) {
                     selected: selectedOptionValue === value,
                     disabled: !isAvailable,
                   }),
-                  !isAvailable && "opacity-75",
+                  !isAvailable && "opacity-75"
                 )}
                 onClick={() => onSelectOptionValue(value)}
                 style={{ aspectRatio }}
@@ -214,7 +214,7 @@ export function VariantOption(props: VariantOptionProps) {
                     sizes="auto"
                     className={cn(
                       "w-full h-full object-cover object-center",
-                      variants({ shape }),
+                      variants({ shape })
                     )}
                   />
                 ) : (
@@ -249,7 +249,7 @@ export function VariantOption(props: VariantOptionProps) {
               className={cn(
                 "py-0.5 cursor-pointer border-b border-line/75 hover:border-body",
                 selectedOptionValue === value.value && "border-body",
-                !value.isAvailable && "opacity-50",
+                !value.isAvailable && "opacity-50"
               )}
               onClick={() => onSelectOptionValue(value.value)}
               role="listitem"

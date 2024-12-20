@@ -12,7 +12,7 @@ import { Modal } from "./modal";
 import { ProductMedia } from "./product-form/product-media";
 import { Quantity } from "./product-form/quantity";
 import { ProductVariants } from "./product-form/variants";
-
+import { cn } from "~/lib/cn";
 export function QuickView(props: { data: Jsonify<ProductData> }) {
   const { data } = props;
 
@@ -27,7 +27,7 @@ export function QuickView(props: { data: Jsonify<ProductData> }) {
   let { product, variants: _variants, storeDomain, shop } = data || {};
 
   let [selectedVariant, setSelectedVariant] = useState<any>(
-    product?.selectedVariant,
+    product?.selectedVariant
   );
 
   let variants = _variants?.product?.variants;
@@ -62,8 +62,8 @@ export function QuickView(props: { data: Jsonify<ProductData> }) {
   let atcText = selectedVariant?.availableForSale
     ? addToCartText
     : selectedVariant?.quantityAvailable === -1
-      ? unavailableText
-      : soldOutText;
+    ? unavailableText
+    : soldOutText;
   return (
     <div className="p-10 rounded-md bg-background w-[80vw] max-w-[1200px]">
       <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-12">
@@ -82,15 +82,6 @@ export function QuickView(props: { data: Jsonify<ProductData> }) {
               </h2>
             </div>
             <p className="text-xl md:text-2xl/relaxed lg:text-2xl/relaxed xl:text-3xl/relaxed flex gap-3">
-              {selectedVariant?.compareAtPrice && (
-                <Money
-                  withoutTrailingZeros
-                  data={selectedVariant.compareAtPrice}
-                  className="text-label-sale line-through"
-                  as="span"
-                />
-              )}
-
               {selectedVariant ? (
                 <Money
                   withoutTrailingZeros
@@ -98,6 +89,16 @@ export function QuickView(props: { data: Jsonify<ProductData> }) {
                   as="span"
                 />
               ) : null}
+              {selectedVariant?.compareAtPrice && (
+                <Money
+                  withoutTrailingZeros
+                  data={selectedVariant.compareAtPrice}
+                  className={cn(
+                    "text-label-sale opacity-50 line-through text-[var(--color-compare-price-text)]"
+                  )}
+                  as="span"
+                />
+              )}
             </p>
             <ProductVariants
               // @ts-expect-error
@@ -124,7 +125,7 @@ export function QuickView(props: { data: Jsonify<ProductData> }) {
               },
             ]}
             data-test="add-to-cart"
-            className="w-[360px]"
+            className="w-full"
           >
             {atcText}
           </AddToCartButton>
@@ -182,7 +183,7 @@ export function QuickViewTrigger(props: { productHandle: string }) {
 
   return (
     <>
-      <div className="mt-2 absolute bottom-4 hidden lg:group-hover:block py-5 px-3 w-full opacity-100 bg-[rgba(238,239,234,0.10)] backdrop-blur-2xl">
+      <div className=" absolute bottom-0 hidden lg:group-hover:block  w-full  bg-inherit ">
         <Button
           onClick={(e: Event) => {
             e.preventDefault();
@@ -190,7 +191,7 @@ export function QuickViewTrigger(props: { productHandle: string }) {
             setQuickAddOpen(true);
           }}
           loading={state === "loading"}
-          className="w-full"
+          className="w-full uppercase"
         >
           Select options
         </Button>

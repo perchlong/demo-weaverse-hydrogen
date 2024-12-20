@@ -36,7 +36,7 @@ export async function loader({ params, request, context }: LoaderFunctionArgs) {
         country: context.storefront.i18n.country,
         language: context.storefront.i18n.language,
       },
-    },
+    }
   );
 
   if (!product?.id) {
@@ -84,7 +84,7 @@ export async function loader({ params, request, context }: LoaderFunctionArgs) {
       judgeme_API_TOKEN,
       shop_domain,
       productHandle,
-      context.weaverse,
+      context.weaverse
     );
   }
 
@@ -157,13 +157,13 @@ export default function Product() {
 
 async function getRecommendedProducts(
   storefront: Storefront,
-  productId: string,
+  productId: string
 ) {
   let products = await storefront.query<ProductRecommendationsQuery>(
     RECOMMENDED_PRODUCTS_QUERY,
     {
       variables: { productId, count: 12 },
-    },
+    }
   );
 
   invariant(products, "No data returned from Shopify API");
@@ -175,7 +175,7 @@ async function getRecommendedProducts(
     });
 
   let originalProduct = mergedProducts.findIndex(
-    (item) => item.id === productId,
+    (item) => item.id === productId
   );
 
   mergedProducts.splice(originalProduct, 1);

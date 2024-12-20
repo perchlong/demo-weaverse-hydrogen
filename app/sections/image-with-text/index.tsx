@@ -3,9 +3,23 @@ import { forwardRef } from "react";
 import { backgroundInputs } from "~/components/background-image";
 import type { SectionProps } from "~/components/section";
 import { Section, layoutInputs } from "~/components/section";
+import { motion, Variants } from "framer-motion";
 
 type ImageWithTextProps = SectionProps;
-
+const cardVariants: Variants = {
+  offscreen: {
+    y: 300,
+  },
+  onscreen: {
+    y: 50,
+    // rotate: -10,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8,
+    },
+  },
+};
 let ImageWithText = forwardRef<HTMLElement, ImageWithTextProps>(
   (props, ref) => {
     let { children, ...rest } = props;
@@ -16,10 +30,19 @@ let ImageWithText = forwardRef<HTMLElement, ImageWithTextProps>(
         {...rest}
         containerClassName="flex flex-col md:flex-row px-0 sm:px-0"
       >
+        {/* <motion.div
+          className="card-container"
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.8 }}
+        >
+          <motion.div className="card" variants={cardVariants}> */}
         {children}
+        {/* </motion.div>
+        </motion.div> */}
       </Section>
     );
-  },
+  }
 );
 
 export default ImageWithText;

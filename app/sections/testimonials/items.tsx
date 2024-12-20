@@ -42,7 +42,7 @@ let TestimonialsItems = forwardRef<HTMLDivElement, TestimonialsItemsProps>(
         </div>
       </div>
     );
-  },
+  }
 );
 
 export default TestimonialsItems;

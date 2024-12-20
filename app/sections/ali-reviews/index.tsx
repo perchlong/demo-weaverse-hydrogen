@@ -23,7 +23,7 @@ let AliReviewSection = forwardRef<HTMLElement, AliReviewsProps>(
         {children}
       </Section>
     );
-  },
+  }
 );
 
 export type AliReviewsLoaderData = Awaited<ReturnType<typeof loader>>;
@@ -46,7 +46,7 @@ export let loader = async ({
           Authorization: `Bearer ${aliReviewsApiKey}`,
           "Content-Type": "application/json",
         },
-      },
+      }
     )
     .catch((err) => {
       console.log(err?.message);

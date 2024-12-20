@@ -34,19 +34,32 @@ export default {
         },
         marquee: {
           "0%": {
-            left: "0", /* 起始位置 */
+            left: "100%", /* 起始位置 */
+            opacity:0,
+            transform: "translate(-50%, -50%)"
         },
-        "25%": {
+        "30%": {
             left: "50%", /* 到达中心 */
-            transform: "translateX(-50%)", /* 确保中心对齐 */
+            opacity:1,
+            transform: "translate(-50%, -50%)"
         },
-        "75%": {
-            left: "50%", /* 在中间停留 */
-            transform: "translateX(50%)",
+        "50%": {
+            left: "50%", /* 到达中心 */
+            opacity:1,
+            transform: "translate(-50%, -50%)"
+        },
+        "70%": {
+            left: "0%", /* 到达中心 */
+            opacity:0,
+            transform: "translate(-50%, -50%)"
         },
         "100%": {
-            left: "100%", /* 回到起始位置 */
-        }
+            left: "0%", /* 在中间停留 */
+            opacity:0,
+            transform: "translate(-50%, -50%)"
+        },
+        
+       
         },
         flip :{
           "0%,45%": {
@@ -79,7 +92,8 @@ export default {
       },
       animation: {
         spin: "spin .5s linear infinite",
-        marquee: "marquee var(--animation-speed,300ms) linear infinite",
+        front: "marquee 6s ease-in-out  infinite",
+        back: "marquee 6s 3s ease-in-out infinite",
         flip: "flip 10s infinite",
         underline: "underline 400ms linear",
         "fade-in": "fade-in 500ms ease-in forwards",
