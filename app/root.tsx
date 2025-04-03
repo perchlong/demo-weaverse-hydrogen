@@ -41,7 +41,6 @@ import styles from "./styles/app.css?url";
 import { GlobalStyle } from "./weaverse/style";
 
 export type RootLoader = typeof loader;
-
 export let shouldRevalidate: ShouldRevalidateFunction = ({
   formMethod,
   currentUrl,
@@ -346,7 +345,7 @@ async function getLayoutData({ storefront, env }: AppLoadContext) {
         data.headerMenu,
         data.shop.primaryDomain.url,
         env,
-        customPrefixes,
+        customPrefixes
       )
     : undefined;
 
@@ -355,7 +354,7 @@ async function getLayoutData({ storefront, env }: AppLoadContext) {
         data.footerMenu,
         data.shop.primaryDomain.url,
         env,
-        customPrefixes,
+        customPrefixes
       )
     : undefined;
 
